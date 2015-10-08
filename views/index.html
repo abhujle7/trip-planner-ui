@@ -10,10 +10,11 @@
     </div>
   </div>
   <div id="control-panel" class="col-sm-4 col-lg-3 clearfix">
+
     <div class="col-xs-6 col-sm-12">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div>
+          <div class = "addable hotels">
             <h4>Hotels</h4>
             <select>
               {% for hotel in all_hotels %}
@@ -22,7 +23,7 @@
             </select>
             <button class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div>
+          <div class = "addable restaurants">
             <h4>Restaurants</h4>
             <select>
               {% for restaurant in all_restaurants %}
@@ -31,9 +32,9 @@
             </select>
             <button class="btn btn-primary btn-circle pull-right">+</button>
           </div>
-          <div>
+          <div class = "addable activities">
             <h4>Activities</h4>
-            <select>
+            <select >
               {% for activity in all_activities %}
               <option>{{ activity.name }}</option>
               {% endfor %}
@@ -43,56 +44,37 @@
         </div>
       </div>
     </div>
+
     <div class="col-xs-6 col-sm-12">
       <h3>
         <span id="day-title">
-          <span>Day 2</span>
+          <span>Day <span id = "num-day">1</span></span>
           <button class="btn btn-xs btn-danger remove btn-circle">x</button>
         </span>
       </h3>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <div class="day-buttons">
-            <button class="btn btn-circle day-btn">1</button>
-            <button class="btn btn-circle day-btn current-day">2</button>
-            <button class="btn btn-circle day-btn">3</button>
-            <button class="btn btn-circle day-btn">+</button>
+          <div class="addable day-buttons">
+            <button class="btn btn-circle day-btn current-day">1</button>
+            <button id = "plus" class="btn btn-circle day-btn">+</button>
           </div>
         </div>
         <div class="panel-body">
           <div>
             <h4>My Hotel</h4>
-            <ul class="list-group">
-              <div class="itinerary-item">
-                <span class="title">Andaz Wall Street</span>
-                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
-              </div>
+            <ul class="list-group hotels">
+
             </ul>
           </div>
           <div>
             <h4>My Restaurants</h4>
-            <ul class="list-group">
-              <div class="itinerary-item">
-                <span class="title">Bouley</span>
-                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
-              </div>
-              <div class="itinerary-item">
-                <span class="title">The Capital Grille</span>
-                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
-              </div>
+            <ul class="list-group restaurants">
+
             </ul>
           </div>
           <div>
             <h4>My Activities</h4>
-            <ul class="list-group">
-              <div class="itinerary-item">
-                <span class="title">Mahayana Buddhist Temple Association</span>
-                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
-              </div>
-              <div class="itinerary-item">
-                <span class="title">South Street Seaport</span>
-                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
-              </div>
+            <ul class="list-group activities">
             </ul>
           </div>
         </div>
@@ -100,4 +82,14 @@
     </div>
   </div>
 </div>
+
+<script id = "db-info">
+  {% autoescape false %}
+  var all_hotels = {{ all_hotels | json }};
+  var all_restaurants = {{ all_restaurants | json }};
+  var all_activities = {{ all_activities | json }};
+  {% endautoescape %}
+</script>
+
 {% endblock %}
+
